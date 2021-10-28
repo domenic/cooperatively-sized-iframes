@@ -18,7 +18,7 @@ An iframe that always auto-resizes to fit the content inside of it:
 
 This example illustrates the two-sided opt-in for this feature:
 
-* The containing page styles the `<iframe>` element with `contain-intrinsic-size: from-element`. It can optionally provide an initial intrinsic size, in this case `500px 500px`. The `from-element` indicates that the `<iframe>` element's [intrinsic size](https://developer.mozilla.org/en-US/docs/Glossary/Intrinsic_Size) willbe taken from whatever the contained page indicates.
+* The containing page styles the `<iframe>` element with `contain-intrinsic-size: from-element`. It can optionally provide an initial intrinsic size, in this case `500px 500px`. The `from-element` indicates that the `<iframe>` element's [intrinsic size](https://developer.mozilla.org/en-US/docs/Glossary/Intrinsic_Size) will be taken from whatever the contained page indicates.
 * The iframed page styles its `<html>` element with `intrinsic-size: auto`. The `intrisic-size` property is how it communicates the desired intrinsic size up to the containing page; the value of `auto` indicates that the desired intrisic size equal to its laid-out size.
 
 The final result is that the iframe will start out at 500x500, but quickly change as content loads into it and the browser does appropriate layout synchronization work. (This work could potentially span multiple processes, and so could take a couple of frames to go through.) If we just use `contain-intrinsic-size: from-element` without the `500px 500px` default, then iframe will start out at the usual 300x150 size until such layout work happens.
@@ -134,7 +134,7 @@ Developers accomplish cooperatively-sized iframes today through JavaScript messa
 ```html
 <iframe class="autosize" src="iframe.html"></iframe>
 <script>
-window.addEventListener("message", { data, source } => {
+window.addEventListener("message", ({ data, source }) => {
   if (data.event === "resize") {
     source.frameElement.style.width = data.width;
     source.frameElement.style.height = data.height;
